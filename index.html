@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>💰 Expense<span>Tracker</span></h1>
+    <button id="themeBtn" class="icon-btn">🌙</button>
+  </header>
+
+  <!-- SUMMARY CARDS -->
+  <section class="cards">
+    <div class="card balance"><span>Balance</span><h2 id="balance">AED 0</h2></div>
+    <div class="card income"><span>Income</span><h2 id="income">AED 0</h2></div>
+    <div class="card expense"><span>Expenses</span><h2 id="expense">AED 0</h2></div>
+  </section>
+
+  <main class="layout">
+    <!-- ADD FORM -->
+    <form id="form" class="panel">
+      <h3>Add transaction</h3>
+      <div class="type-toggle">
+        <label><input type="radio" name="type" value="expense" checked><span>Expense</span></label>
+        <label><input type="radio" name="type" value="income"><span>Income</span></label>
+      </div>
+      <input type="text" id="desc" placeholder="Description (e.g. Groceries)" required>
+      <input type="number" id="amount" placeholder="Amount (AED)" min="1" step="0.01" required>
+      <select id="category"></select>
+      <input type="date" id="date" required>
+      <button class="btn" type="submit">+ Add</button>
+    </form>
+
+    <!-- CHART -->
+    <section class="panel">
+      <h3>Spending by category</h3>
+      <div class="chart-box">
+        <canvas id="chart"></canvas>
+        <p id="noChart" class="empty">No expenses yet 📊</p>
+      </div>
+    </section>
+
+    <!-- HISTORY -->
+    <section class="panel history">
+      <div class="history-top">
+        <h3>History</h3>
+        <div class="filters">
+          <button data-filter="all" class="active">All</button>
+          <button data-filter="income">Income</button>
+          <button data-filter="expense">Expenses</button>
+        </div>
+      </div>
+      <ul id="list"></ul>
+      <div class="history-actions">
+        <button id="exportBtn" class="link">⬇ Export CSV</button>
+        <button id="clearBtn" class="link danger">Clear all</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
